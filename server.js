@@ -6,6 +6,7 @@ const routes = require('./routes/contactRoutes');
 const port = process.env.PORT || 5001;
 
 //middlewares
+app.use(express.json());
 app.use('/api/v1/contacts', routes);
 
 app.listen(port, () => {

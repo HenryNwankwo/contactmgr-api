@@ -7,14 +7,11 @@ const {
   deleteContact,
 } = require('../controllers/contactController');
 
-//For getting all contacts
-router.route('/').get(getAllContacts);
+//For getting all contacts AND For creating contact
+router.route('/').get(getAllContacts).post(createContact);
 
 //For getting a contact
 router.route('/:id').get(getContactById);
-
-//For creating contact
-router.route('/').post(createContact);
 
 //For updating contact
 router.route('/:id').put(updateContact);
