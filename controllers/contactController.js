@@ -37,7 +37,10 @@ const createContact = asyncHandler(async (req, res) => {
     throw new Error('All fields are required! ');
   }
   const newContact = await Contact.create({ name, email, phone });
-  res.status(201).json(newContact);
+  res.status(201).json({
+    message: 'Contact added successfully!',
+    new_contact: newContact,
+  });
 });
 
 /* Update contact
@@ -45,7 +48,25 @@ const createContact = asyncHandler(async (req, res) => {
 @access public */
 
 const updateContact = asyncHandler(async (req, res) => {
-  res.status(200).send(`Updating contact for ${req.params.id}`);
+  const contactId = req.params.id;
+
+  //Checking if contact exists
+  const contactFound = await Contact.findById(contactId);
+
+  if (!contactFound) {
+    res.status(404);
+    throw new Error('Contact not found');
+  }
+
+  //updating if it exists
+
+  const updatedContact = await Contact.findByIdAndUpdate(contactId, req.body, {
+    new: true,
+  });
+  res.status(200).json({
+    message: 'Contact updated successfully!',
+    updated_contact: updatedContact,
+  });
 });
 
 /* Delete contact
@@ -53,7 +74,19 @@ const updateContact = asyncHandler(async (req, res) => {
 @access public */
 
 const deleteContact = asyncHandler(async (req, res) => {
-  res.send(`Delete contact for ${req.params.id}`);
+  const userContact = await Contact.findById(req.params.id);
+
+  if (!userContact) {
+    res.status(404);
+
+    throw new Error('Contact not found!');
+  }
+
+  await Contact.findByIdAndDelete(req.params.id);
+  res.status(200).json({
+    message: 'Contact deleted successfully!',
+    deleted_contact: userContact,
+  });
 });
 
 module.exports = {
