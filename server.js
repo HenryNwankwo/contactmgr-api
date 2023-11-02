@@ -3,8 +3,12 @@ const dotenv = require('dotenv').config();
 const app = express();
 const routes = require('./routes/contactRoutes');
 const errorHandler = require('./middlewares/errorHandler');
+const dbConnection = require('./config/dbConnect');
 
 const port = process.env.PORT || 5001;
+
+//Connecting to database
+dbConnection();
 
 //middlewares
 app.use(express.json());

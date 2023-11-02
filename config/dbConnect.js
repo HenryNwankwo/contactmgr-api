@@ -12,14 +12,16 @@ const dbConnection = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    const connect = await mongoose.connect(process.env.MONGODB_URI, {
       dbName: 'contactmgr',
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     });
 
     isConnected = true;
-    console.log('MongoDB is now Connected!');
+    console.log(
+      'MongoDB is now Connected!',
+      connect.connection.host,
+      connect.connection.name
+    );
   } catch (err) {
     console.log('Database connection error: ', err);
   }
