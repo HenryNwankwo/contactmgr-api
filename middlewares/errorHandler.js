@@ -44,7 +44,7 @@ const errorHandler = (err, req, res, next) => {
       });
       break;
     default:
-      console.log('Error: ', err.message);
+      res.json({ Error_message: err.message, stackTrace: err.stack });
       break;
   }
 };
