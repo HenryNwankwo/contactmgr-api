@@ -85,7 +85,7 @@ const loginUser = asyncHandler(async (req, res) => {
         email: user.email,
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '1m' }
+      { expiresIn: '5m' }
     );
     res.status(200).json({ access_token: accessToken });
   } else {
@@ -101,7 +101,7 @@ const loginUser = asyncHandler(async (req, res) => {
 ==================================*/
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: 'Current user data' });
+  res.status(200).json(req.user);
 });
 
 module.exports = { registerUser, loginUser, getCurrentUser };
