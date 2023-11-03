@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const User = require('./../models/userModel');
 
 /* =================================
 @desc Register a user
@@ -6,7 +7,7 @@ const asyncHandler = require('express-async-handler');
 @route POST /api/v1/users/register 
 ==================================*/
 
-const registerUser = asyncHandler((req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
   res.status(201).json({ message: 'User registration successful!' });
 });
 
@@ -16,17 +17,17 @@ const registerUser = asyncHandler((req, res) => {
 @route POST /api/v1/users/login
 ==================================*/
 
-const loginUser = asyncHandler((req, res) => {
+const loginUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'User logged in successfully!' });
 });
 
 /* =================================
 @desc Get current user
-@access public
+@access private
 @route GET /api/v1/users/current
 ==================================*/
 
-const getCurrentUser = asyncHandler((req, res) => {
+const getCurrentUser = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'Current user data' });
 });
 
