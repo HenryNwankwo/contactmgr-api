@@ -36,7 +36,12 @@ const createContact = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('All fields are required! ');
   }
-  const newContact = await Contact.create({ name, email, phone });
+  const newContact = await Contact.create({
+    user_id: req.user.id,
+    name,
+    email,
+    phone,
+  });
   res.status(201).json({
     message: 'Contact added successfully!',
     new_contact: newContact,
@@ -57,12 +62,20 @@ const updateContact = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Contact not found');
   }
+  //Checking if user has permission to update
+  if (contactFound.user_id.toString() !== req.user.id) {
+    res.status(403);
+    throw new Error(
+      "User don't have permission to update other user's contact"
+    );
+  }
 
   //updating if it exists
 
   const updatedContact = await Contact.findByIdAndUpdate(contactId, req.body, {
     new: true,
   });
+
   res.status(200).json({
     message: 'Contact updated successfully!',
     updated_contact: updatedContact,
@@ -80,6 +93,14 @@ const deleteContact = asyncHandler(async (req, res) => {
     res.status(404);
 
     throw new Error('Contact not found!');
+  }
+
+  //Checking if user have permission to delete
+  if (contactFound.user_id.toString() !== req.user.id) {
+    res.status(403);
+    throw new Error(
+      "User don't have permission to delete other user's contact"
+    );
   }
 
   await Contact.findByIdAndDelete(req.params.id);
