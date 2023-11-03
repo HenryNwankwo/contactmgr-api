@@ -3,16 +3,16 @@ const Contact = require('../models/contactModel');
 
 /* Get all contacts
 @route GET /api/contacts
-@access public */
+@access private */
 
 const getAllContacts = asyncHandler(async (req, res) => {
-  const allContacts = await Contact.find();
+  const allContacts = await Contact.find({ user_id: req.user.id });
   res.status(200).json(allContacts);
 });
 
 /* Get contact by ID
 @route GET /api/contacts/:id
-@access public */
+@access private */
 
 const getContactById = asyncHandler(async (req, res) => {
   const contactId = req.params.id;
@@ -27,7 +27,7 @@ const getContactById = asyncHandler(async (req, res) => {
 
 /* create new contact
 @route POST /api/contacts
-@access public */
+@access private */
 
 const createContact = asyncHandler(async (req, res) => {
   const { name, phone, email } = req.body;
@@ -45,7 +45,7 @@ const createContact = asyncHandler(async (req, res) => {
 
 /* Update contact
 @route PUT /api/contacts/:id
-@access public */
+@access private */
 
 const updateContact = asyncHandler(async (req, res) => {
   const contactId = req.params.id;
@@ -71,7 +71,7 @@ const updateContact = asyncHandler(async (req, res) => {
 
 /* Delete contact
 @route DELETE /api/contacts/:id
-@access public */
+@access private */
 
 const deleteContact = asyncHandler(async (req, res) => {
   const userContact = await Contact.findById(req.params.id);
