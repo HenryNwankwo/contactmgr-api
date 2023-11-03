@@ -96,7 +96,7 @@ const deleteContact = asyncHandler(async (req, res) => {
   }
 
   //Checking if user have permission to delete
-  if (contactFound.user_id.toString() !== req.user.id) {
+  if (userContact.user_id.toString() !== req.user.id) {
     res.status(403);
     throw new Error(
       "User don't have permission to delete other user's contact"
