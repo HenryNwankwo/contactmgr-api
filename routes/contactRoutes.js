@@ -40,6 +40,37 @@ router.use(validateToken);
  *
  */
 
+//FOR CREATING CONTACTS
+
+/**
+ * @openapi
+ * /api/v1/contacts:
+ *  post:
+ *    summary: returns an object of the created contact
+ *    tags:
+ *      - Contacts
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/CreateContact'
+ *    responses:
+ *      200:
+ *        description: Successful contact creation
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/CreateContactResponse'
+ *      400:
+ *       description: Validation failed
+ *      401:
+ *       description: Unauthorized
+ *      500:
+ *       description: Server Error
+ *
+ */
+
 router.route('/').get(getAllContacts).post(createContact);
 
 //For getting a contact
