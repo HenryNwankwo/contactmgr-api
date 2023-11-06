@@ -12,6 +12,24 @@ const validateToken = require('../middlewares/validateTokenHandler');
 router.use(validateToken);
 
 //For getting all contacts AND For creating contact
+
+/**
+ * @openapi
+ * /api/v1/contacts:
+ *  get:
+ *    summary: returns an array of contacts created by a user
+ *    tags:
+ *      - Contacts
+ *    responses:
+ *      200:
+ *        description: A JSON Array of contacts.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/GetAllContacts'
+ *
+ */
+
 router.route('/').get(getAllContacts).post(createContact);
 
 //For getting a contact

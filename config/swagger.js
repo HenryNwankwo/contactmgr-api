@@ -25,7 +25,7 @@ const options = {
       },
     ],
   },
-  apis: ['./../routes/*.js', './../models/*.js'],
+  apis: ['./routes/*.js', './models/*.js'],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
@@ -33,6 +33,8 @@ const swaggerSpec = swaggerJsdoc(options);
 function swaggerDocs(app, port) {
   // Swagger page
   app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+  console.log('SwaggerSpec Obj: ', swaggerSpec);
 
   // Docs in JSON format
   app.get('docs.json', (req, res) => {
