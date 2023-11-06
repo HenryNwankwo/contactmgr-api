@@ -54,6 +54,12 @@ const createContact = asyncHandler(async (req, res) => {
 
 const updateContact = asyncHandler(async (req, res) => {
   const contactId = req.params.id;
+  const { name, email, phone } = req.body;
+
+  if (!name && !email && !phone) {
+    res.status(400);
+    throw new Error('At least, one field is required!');
+  }
 
   //Checking if contact exists
   const contactFound = await Contact.findById(contactId);
