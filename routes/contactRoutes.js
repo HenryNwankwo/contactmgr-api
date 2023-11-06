@@ -27,6 +27,16 @@ router.use(validateToken);
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/GetAllContacts'
+ *      400:
+ *       description: Validation failed
+ *      401:
+ *       description: Unauthorized
+ *      403:
+ *       description: Forbidden
+ *      404:
+ *       description: Contacts not found
+ *      500:
+ *       description: Server Error
  *
  */
 
