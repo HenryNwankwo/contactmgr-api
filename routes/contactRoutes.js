@@ -154,7 +154,42 @@ router.route('/:id').get(getContactById);
 
 router.route('/:id').put(updateContact);
 
-//For deleting contact
+/**=========================
+ * For updating a contact by id
+ * =======================**/
+
+/**
+ * @openapi
+ * /api/v1/contacts/{id}:
+ *  delete:
+ *    summary: returns an object containing the deleted contact details
+ *    tags:
+ *      - Contacts
+ *    parameters:
+ *      - name: id
+ *        in: path
+ *        description: id of the contact
+ *        required: true *
+ *    responses:
+ *      200:
+ *        description: Successful Contact deletion.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/DeleteContactResponse'
+ *      400:
+ *       description: Validation failed
+ *      401:
+ *       description: Unauthorized
+ *      403:
+ *       description: Forbidden
+ *      404:
+ *       description: Contact not found
+ *      500:
+ *       description: Server Error
+ *
+ */
+
 router.route('/:id').delete(deleteContact);
 
 module.exports = router;
