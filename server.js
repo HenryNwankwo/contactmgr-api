@@ -4,6 +4,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const dbConnection = require('./config/dbConnect');
 const contactRoutes = require('./routes/contactRoutes');
 const userRoutes = require('./routes/userRoutes');
+const swaggerDocs = require('./config/swagger');
 
 const app = express();
 const port = process.env.PORT || 5001;
@@ -19,4 +20,6 @@ app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
+
+  swaggerDocs(app, port);
 });
