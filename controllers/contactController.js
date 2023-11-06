@@ -56,6 +56,11 @@ const updateContact = asyncHandler(async (req, res) => {
   const contactId = req.params.id;
   const { name, email, phone } = req.body;
 
+  if (contactId == '') {
+    res.status(400);
+    throw new Error('Invalid Contact Id!');
+  }
+
   if (!name && !email && !phone) {
     res.status(400);
     throw new Error('At least, one field is required!');
