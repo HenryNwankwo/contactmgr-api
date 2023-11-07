@@ -17,6 +17,8 @@ router.use(validateToken);
  * @openapi
  * /api/v1/contacts:
  *  get:
+ *    security:
+ *      - bearerAuth: []
  *    summary: returns an array of contacts created by a user
  *    tags:
  *      - Contacts
@@ -46,6 +48,8 @@ router.use(validateToken);
  * @openapi
  * /api/v1/contacts:
  *  post:
+ *    security:
+ *      - bearerAuth: []
  *    summary: returns an object of the created contact
  *    tags:
  *      - Contacts
@@ -81,6 +85,8 @@ router.route('/').get(getAllContacts).post(createContact);
  * @openapi
  * /api/v1/contacts/{id}:
  *  get:
+ *    security:
+ *      - bearerAuth: []
  *    summary: returns an object containing a contact details
  *    tags:
  *      - Contacts
@@ -119,6 +125,8 @@ router.route('/:id').get(getContactById);
  * @openapi
  * /api/v1/contacts/{id}:
  *  put:
+ *    security:
+ *      - bearerAuth: []
  *    summary: returns an object containing the updated contact details
  *    tags:
  *      - Contacts
@@ -155,13 +163,15 @@ router.route('/:id').get(getContactById);
 router.route('/:id').put(updateContact);
 
 /**=========================
- * For updating a contact by id
+ * For deleting a contact by id
  * =======================**/
 
 /**
  * @openapi
  * /api/v1/contacts/{id}:
  *  delete:
+ *    security:
+ *      - bearerAuth: []
  *    summary: returns an object containing the deleted contact details
  *    tags:
  *      - Contacts

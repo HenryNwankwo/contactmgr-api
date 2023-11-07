@@ -82,6 +82,8 @@ router.post('/login', loginUser);
  * @openapi
  * /api/v1/users/current:
  *  get:
+ *    security:
+ *      - bearerAuth: []
  *    summary: For getting current user info. Returns an object containing the current user details
  *    tags:
  *      - Users
