@@ -12,7 +12,7 @@ const {
 
 /**
  * @openapi
- * /api/vi/users/register:
+ * /api/v1/users/register:
  *  post:
  *    summary: For user registration. Returns the object of the user created
  *    tags:
@@ -24,12 +24,14 @@ const {
  *          schema:
  *            $ref: '#components/schemas/RegisterUser'
  *    responses:
- *      201:
- *        description: Successful user creation.
+ *      200:
+ *        description: Success
  *        content:
  *          application/json:
  *            schema:
  *              $ref: '#components/schemas/RegisterUserResponse'
+ *      201:
+ *       description: Successful user creation.
  *      400:
  *       description: Bad Request
  *      409:
@@ -41,12 +43,12 @@ const {
 router.post('/register', registerUser);
 
 /**=========================
- * For Registering a User
+ * For Login a User
  * =======================**/
 
 /**
  * @openapi
- * /api/vi/users/login:
+ * /api/v1/users/login:
  *  post:
  *    summary: For user login. Returns an object containing the access token
  *    tags:
@@ -78,7 +80,7 @@ router.post('/login', loginUser);
 
 /**
  * @openapi
- * /api/vi/users/current:
+ * /api/v1/users/current:
  *  get:
  *    summary: For getting current user info. Returns an object containing the current user details
  *    tags:
