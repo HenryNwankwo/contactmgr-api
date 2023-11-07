@@ -44,6 +44,26 @@ const mongoose = require('mongoose');
  *            email:
  *              type: string
  *              example: okoroJanice@gmail.com
+ *    LoginUser:
+ *      type: object
+ *      required:
+ *        - email
+ *        - password
+ *      properties:
+ *        email:
+ *          type: string
+ *          example: okoroJanice@gmail.com
+ *        password:
+ *          type: string
+ *          format: password
+ *          example: mypassword1234
+ *
+ *    LoginUserResponse:
+ *      type: object
+ *      properties:
+ *        access_token:
+ *          type: string
+ *          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDRmMGI0MjljNjUxNDczZGEyOTc3NyIsInVzZXJuYW1lIjoiYnJvb2tlIiwiZW1haWwiOiJicm9va2VAeWFob28uY29tIiwiaWF0IjoxNjk5MzQ3MjE2LCJleHAiOjE2OTkzNDkwMTZ9.IXmiwOb1SllLTHwFMLJkS24L3nLpPcaSvN2G6QMzVc4
  */
 
 const userSchema = mongoose.Schema(

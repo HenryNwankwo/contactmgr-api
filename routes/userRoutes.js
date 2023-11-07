@@ -40,7 +40,36 @@ const {
 
 router.post('/register', registerUser);
 
-//For user login
+/**=========================
+ * For Registering a User
+ * =======================**/
+
+/**
+ * @openapi
+ * /api/vi/users/login:
+ *  post:
+ *    summary: For user login. Returns an object containing the access token
+ *    tags:
+ *      - Users
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#components/schemas/LoginUser'
+ *    responses:
+ *      200:
+ *        description: Successful user login.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#components/schemas/LoginUserResponse'
+ *      400:
+ *       description: Validation Failed
+ *      500:
+ *       description: Server Error
+ */
+
 router.post('/login', loginUser);
 
 //For getting current user
