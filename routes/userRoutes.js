@@ -72,7 +72,36 @@ router.post('/register', registerUser);
 
 router.post('/login', loginUser);
 
-//For getting current user
+/**=========================
+ * For Getting current user info
+ * =======================**/
+
+/**
+ * @openapi
+ * /api/vi/users/current:
+ *  get:
+ *    summary: For getting current user info. Returns an object containing the current user details
+ *    tags:
+ *      - Users
+ *    responses:
+ *      200:
+ *        description: Success.
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#components/schemas/GetCurrentUserResponse'
+ *      400:
+ *       description: Validation Failed
+ *      401:
+ *       description: Unauthorized
+ *      403:
+ *       description: Forbidden
+ *      404:
+ *       description: User not found
+ *      500:
+ *       description: Server Error
+ */
+
 router.get('/current', validateToken, getCurrentUser);
 
 module.exports = router;

@@ -64,6 +64,23 @@ const mongoose = require('mongoose');
  *        access_token:
  *          type: string
  *          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NDRmMGI0MjljNjUxNDczZGEyOTc3NyIsInVzZXJuYW1lIjoiYnJvb2tlIiwiZW1haWwiOiJicm9va2VAeWFob28uY29tIiwiaWF0IjoxNjk5MzQ3MjE2LCJleHAiOjE2OTkzNDkwMTZ9.IXmiwOb1SllLTHwFMLJkS24L3nLpPcaSvN2G6QMzVc4
+ *
+ *    GetCurrentUserResponse:
+ *      type: object
+ *      required:
+ *        - id
+ *        - email
+ *        - username
+ *      properties:
+ *            id:
+ *              type: string
+ *              example: 65451bae2bed43bfc1a3ca85
+ *            email:
+ *              type: string
+ *              example: Chinwuba@hotmail.com
+ *            username:
+ *              type: string
+ *              example: Chinwuba
  */
 
 const userSchema = mongoose.Schema(
